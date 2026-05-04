@@ -5,10 +5,7 @@
   "outputDirectory": "frontend/build",
   "functions": {
     "api/index.js": {
-      "includeFiles": [
-        "backend/**",
-        "mock-db.json"
-      ]
+      "includeFiles": "{backend/**,mock-db.json}"
     }
   },
   "rewrites": [
