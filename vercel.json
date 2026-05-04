@@ -3,7 +3,7 @@
   "installCommand": "node scripts/vercel-install.js",
   "buildCommand": "node scripts/vercel-build.js",
   "outputDirectory": "build",
-  "version": 3,
+  "version": 2,
   "functions": {
     "api/index.js": {
       "includeFiles": "{backend/**,mock-db.json}"
