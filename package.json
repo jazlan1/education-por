@@ -1,0 +1,34 @@
+{
+  "name": "edumanage-sms",
+  "version": "1.0.0",
+  "description": "EduManage School Management System - MERN Stack (MongoDB, Express, React, Node.js)",
+  "author": "Your Name",
+  "private": true,
+  "scripts": {
+    "install-all": "npm install --prefix backend && npm install --prefix frontend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm start --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm start --prefix frontend",
+    "start:backend": "npm start --prefix backend",
+    "start:frontend": "npm start --prefix frontend",
+    "start": "cd backend && npm start",
+    "build": "cd frontend && npm install && npm run build",
+    "heroku-postbuild": "npm run build",
+    "build:all": "npm run build --prefix frontend",
+    "seed": "npm run seed --prefix backend",
+    "lint": "concurrently \"npm run lint --prefix backend\" \"npm run lint --prefix frontend\"",
+    "test": "concurrently \"npm test --prefix backend\" \"npm test --prefix frontend\"",
+    "audit": "npm audit --prefix backend && npm audit --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "school",
+    "management",
+    "system",
+    "SMS",
+    "MERN",
+    "education"
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "users": [
+    {
+      "_id": "admin_001",
+      "name": "Admin User",
+      "email": "admin@school.com",
+      "password": "admin123",
+      "role": "admin",
+      "profileRef": null,
+      "profileModel": null,
+      "isActive": true,
+      "lastLogin": "2026-04-21T01:46:37.897Z",
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T01:46:37.897Z"
+    },
+    {
+      "_id": "teacher_001",
+      "name": "John Smith",
+      "email": "teacher@school.com",
+      "password": "teacher123",
+      "role": "teacher",
+      "profileRef": "teacher_profile_001",
+      "profileModel": "Teacher",
+      "isActive": true,
+      "lastLogin": "2026-04-21T01:02:21.675Z",
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T01:02:21.675Z"
+    },
+    {
+      "_id": "student_001",
+      "name": "Alice Johnson",
+      "email": "student@school.com",
+      "password": "student123",
+      "role": "student",
+      "profileRef": "student_profile_001",
+      "profileModel": "Student",
+      "isActive": true,
+      "lastLogin": "2026-04-21T01:02:21.720Z",
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T01:02:21.720Z"
+    },
+    {
+      "name": "Muhammad",
+      "email": "test@test.com",
+      "password": "12345",
+      "role": "student",
+      "_id": "user_1776734479296_5o2fo1z",
+      "createdAt": "2026-04-21T01:21:19.296Z",
+      "updatedAt": "2026-04-21T01:21:19.302Z",
+      "profileRef": "student_1776734479299_lpcm0jb",
+      "profileModel": "Student",
+      "isActive": true
+    },
+    {
+      "name": "Muhammad Tauseef Tabassum",
+      "email": "test@test.com",
+      "password": "123456",
+      "role": "teacher",
+      "_id": "user_1776734842810_ot0cde4",
+      "createdAt": "2026-04-21T01:27:22.810Z",
+      "updatedAt": "2026-04-21T01:28:02.637Z",
+      "profileRef": "teacher_1776734842813_wjutt1a",
+      "profileModel": "Teacher",
+      "isActive": true
+    },
+    {
+      "name": "Test Student",
+      "email": "teststudent999@school.com",
+      "password": "test123",
+      "role": "student",
+      "_id": "user_1776735120142_yq76klq",
+      "createdAt": "2026-04-21T01:32:00.142Z",
+      "updatedAt": "2026-04-21T01:32:00.144Z",
+      "profileRef": "student_1776735120143_fngj908",
+      "profileModel": "Student",
+      "isActive": true
+    }
+  ],
+  "students": [
+    {
+      "_id": "student_profile_001",
+      "fullName": "Alice Johnson",
+      "fatherName": "Bob Johnson",
+      "fatherCNIC": "12345-1234567-1",
+      "dateOfBirth": "2005-05-15",
+      "phoneNumber": "03001234567",
+      "rollNumber": "STU001",
+      "address": "123 Main St, City, State",
+      "gender": "Female",
+      "admission": {
+        "admissionYear": 2023,
+        "admissionClass": "10th",
+        "currentClass": "class_001"
+      },
+      "status": "Active",
+      "user": "student_001",
+      "profilePhoto": null,
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T00:00:00.000Z"
+    },
+    {
+      "_id": "student_1776734479299_lpcm0jb",
+      "fullName": "Muhammad",
+      "fatherName": "absc",
+      "fatherCNIC": "12345-1234562-3",
+      "dateOfBirth": "2002-06-29",
+      "phoneNumber": "03246643399",
+      "rollNumber": "Gefe344",
+      "address": "Wasu Mandi Bahauddin punjab",
+      "gender": "Male",
+      "admission": {
+        "admissionYear": "2026",
+        "admissionClass": "Grade 1",
+        "currentClass": "class_001"
+      },
+      "status": "Active",
+      "user": "user_1776734479296_5o2fo1z",
+      "profilePhoto": null,
+      "createdAt": "2026-04-21T01:21:19.299Z",
+      "updatedAt": "2026-04-21T01:21:19.299Z"
+    },
+    {
+      "_id": "student_1776735120143_fngj908",
+      "fullName": "Test Student",
+      "fatherName": "Test Father",
+      "fatherCNIC": "54321-7654321-0",
+      "dateOfBirth": "2008-01-01",
+      "phoneNumber": "03001234569",
+      "rollNumber": "STU999",
+      "address": "Test Address",
+      "gender": "Male",
+      "admission": {
+        "admissionYear": "2026",
+        "admissionClass": "9th",
+        "currentClass": "class_001"
+      },
+      "status": "Active",
+      "user": "user_1776735120142_yq76klq",
+      "profilePhoto": null,
+      "createdAt": "2026-04-21T01:32:00.143Z",
+      "updatedAt": "2026-04-21T01:32:00.143Z"
+    }
+  ],
+  "teachers": [
+    {
+      "_id": "teacher_profile_001",
+      "fullName": "John Smith",
+      "cnic": "12345-1234567-2",
+      "qualification": "M.Sc Mathematics, B.Ed",
+      "joiningYear": 2021,
+      "subjects": [
+        "Mathematics",
+        "Science"
+      ],
+      "phoneNumber": "03001234568",
+      "address": "456 Teacher Street",
+      "email": "teacher@school.com",
+      "gender": "Male",
+      "assignedClasses": [
+        "class_001"
+      ],
+      "isActive": true,
+      "user": "teacher_001",
+      "profilePhoto": null,
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T00:00:00.000Z"
+    },
+    {
+      "_id": "teacher_1776734842813_wjutt1a",
+      "fullName": "Muhammad Tauseef Tabassum",
+      "cnic": "12345-1234567-6",
+      "qualification": "Med",
+      "joiningYear": "2026",
+      "subjects": [
+        "Math Urdu"
+      ],
+      "phoneNumber": "03404770099",
+      "address": "Wasu Mandi Bahauddin punjab",
+      "email": "test@test.com",
+      "gender": "Male",
+      "assignedClasses": [],
+      "isActive": true,
+      "user": "user_1776734842810_ot0cde4",
+      "profilePhoto": null,
+      "createdAt": "2026-04-21T01:27:22.813Z",
+      "updatedAt": "2026-04-21T01:28:02.633Z"
+    }
+  ],
+  "classes": [
+    {
+      "_id": "class_001",
+      "name": "Grade 10-A",
+      "grade": 10,
+      "section": "A",
+      "classTeacher": "teacher_1776734842813_wjutt1a",
+      "subjects": [
+        {
+          "name": "Mathematics",
+          "teacher": "teacher_profile_001"
+        },
+        {
+          "name": "Science",
+          "teacher": "teacher_profile_001"
+        },
+        {
+          "name": "English",
+          "teacher": "teacher_profile_001"
+        }
+      ],
+      "academicYear": "2025-2026",
+      "maxStudents": 40,
+      "isActive": true,
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T01:33:35.429Z"
+    },
+    {
+      "_id": "classe_1776735207692_wf3vhrw",
+      "name": "Nursery",
+      "grade": 1,
+      "section": "A",
+      "classTeacher": "teacher_profile_001",
+      "subjects": [],
+      "academicYear": "2025-26",
+      "maxStudents": 40,
+      "isActive": true,
+      "createdAt": "2026-04-21T01:33:27.692Z",
+      "updatedAt": "2026-04-21T01:33:27.692Z"
+    }
+  ],
+  "attendance": [
+    {
+      "_id": "attendance_001",
+      "class": "class_001",
+      "date": "2026-04-20T00:00:00.000Z",
+      "month": 4,
+      "year": 2026,
+      "markedBy": "admin_001",
+      "records": [
+        {
+          "student": "student_profile_001",
+          "status": "Present",
+          "remarks": ""
+        }
+      ],
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T00:00:00.000Z"
+    },
+    {
+      "class": "class_001",
+      "date": "2026-04-20T19:00:00.000Z",
+      "month": 4,
+      "year": 2026,
+      "markedBy": "admin_001",
+      "records": [
+        {
+          "student": "student_profile_001",
+          "status": "Present",
+          "remarks": ""
+        },
+        {
+          "student": "student_1776734479299_lpcm0jb",
+          "status": "Absent",
+          "remarks": ""
+        },
+        {
+          "student": "student_1776735120143_fngj908",
+          "status": "Present",
+          "remarks": ""
+        }
+      ],
+      "_id": "attendanc_1776735997978_i1o6wva",
+      "createdAt": "2026-04-21T01:46:37.978Z",
+      "updatedAt": "2026-04-21T01:55:01.825Z"
+    },
+    {
+      "class": "class_001",
+      "date": "2026-05-03T19:00:00.000Z",
+      "month": 5,
+      "year": 2026,
+      "markedBy": "admin_001",
+      "records": [
+        {
+          "student": "student_profile_001",
+          "status": "Present",
+          "remarks": ""
+        },
+        {
+          "student": "student_1776734479299_lpcm0jb",
+          "status": "Absent",
+          "remarks": ""
+        },
+        {
+          "student": "student_1776735120143_fngj908",
+          "status": "Present",
+          "remarks": ""
+        }
+      ],
+      "_id": "attendanc_1777879785819_3zzjkfb",
+      "createdAt": "2026-05-04T07:29:45.819Z",
+      "updatedAt": "2026-05-04T07:29:45.819Z"
+    }
+  ],
+  "results": [
+    {
+      "_id": "result_001",
+      "student": "student_profile_001",
+      "class": "class_001",
+      "academicYear": "2025-2026",
+      "examType": "Mid-Term",
+      "subjects": [
+        {
+          "subject": "Mathematics",
+          "totalMarks": 100,
+          "obtainedMarks": 88
+        },
+        {
+          "subject": "Science",
+          "totalMarks": 100,
+          "obtainedMarks": 81
+        },
+        {
+          "subject": "English",
+          "totalMarks": 100,
+          "obtainedMarks": 77
+        }
+      ],
+      "remarks": "Good progress",
+      "enteredBy": "admin_001",
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T00:00:00.000Z",
+      "totalMarks": 300,
+      "obtainedMarks": 246,
+      "percentage": 82,
+      "grade": "A",
+      "status": "Pass"
+    },
+    {
+      "student": "student_profile_001",
+      "class": "class_001",
+      "academicYear": "2025-26",
+      "examType": "Annual",
+      "subjects": [
+        {
+          "subject": "sdvsdvs",
+          "totalMarks": 100,
+          "obtainedMarks": 100
+        },
+        {
+          "subject": "dsvsdvsd",
+          "totalMarks": 100,
+          "obtainedMarks": 100
+        },
+        {
+          "subject": "vsdvsdvs",
+          "totalMarks": 90,
+          "obtainedMarks": 50
+        },
+        {
+          "subject": "dsvsdvsd",
+          "totalMarks": 100,
+          "obtainedMarks": 100
+        }
+      ],
+      "remarks": "",
+      "enteredBy": "admin_001",
+      "_id": "result_1777037051492_rn8z7fq",
+      "createdAt": "2026-04-24T13:24:11.493Z",
+      "updatedAt": "2026-04-24T13:24:11.495Z",
+      "totalMarks": 390,
+      "obtainedMarks": 350,
+      "percentage": 90,
+      "grade": "A+",
+      "status": "Pass",
+      "position": 1
+    }
+  ],
+  "notifications": [
+    {
+      "_id": "notification_001",
+      "title": "Welcome",
+      "message": "Mock mode is active for local testing.",
+      "type": "info",
+      "audience": "all",
+      "createdBy": "admin_001",
+      "createdAt": "2026-04-21T00:00:00.000Z",
+      "updatedAt": "2026-04-21T00:00:00.000Z"
+    }
+  ],
+  "fees": []
+}
