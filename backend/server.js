@@ -12,6 +12,7 @@ const logger = require('./utils/logger');
 
 const app = express();
 const isLocalTesting = process.env.NODE_ENV === 'development' || process.env.USE_MOCK_DB === 'true';
+const isVercel = process.env.VERCEL === '1';
 
 app.set('trust proxy', 1);
 
@@ -85,8 +86,9 @@ app.use('/api/reports', lazyRoute('./routes/reportRoutes'));
 app.use('/api/notifications', lazyRoute('./routes/notificationRoutes'));
 app.use('/api/fees', lazyRoute('./routes/feeRoutes'));
 
-// Serve frontend build in production
-if (process.env.NODE_ENV === 'production') {
+// Serve frontend build only for standalone production hosting.
+// Vercel serves frontend/build separately and sends /api/* to this app.
+if (process.env.NODE_ENV === 'production' && !isVercel) {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
