@@ -40,16 +40,37 @@ Demo mode is good for showing the app, but a real school system should use Mongo
 2. Sign in with GitHub
 3. New Project
 4. Import this GitHub repository
-5. Add Environment Variables:
+5. In project settings, keep the Root Directory as the repository root (`sms`). Do not select only the `frontend` folder as a separate React app, because login calls `/api/auth/login` and needs the Express API in this same deployment.
+6. Use these build settings if Vercel asks:
+
+```text
+Framework Preset: Other
+Install Command: npm install && npm install --prefix backend && npm install --prefix frontend
+Build Command: npm run build --prefix frontend
+Output Directory: frontend/build
+```
+
+7. Add Environment Variables:
 
 ```env
 MONGO_URI=your_mongodb_atlas_connection_string
 JWT_SECRET=make_this_a_long_random_secret_at_least_32_chars
 JWT_EXPIRE=30d
 NODE_ENV=production
+FRONTEND_URL=https://your-project-name.vercel.app
 ```
 
-6. Click Deploy
+For a temporary demo without Atlas, add this instead of `MONGO_URI`:
+
+```env
+USE_MOCK_DB=true
+JWT_SECRET=make_this_a_long_random_secret_at_least_32_chars
+JWT_EXPIRE=30d
+NODE_ENV=production
+FRONTEND_URL=https://your-project-name.vercel.app
+```
+
+8. Click Deploy
 
 After deploy, Vercel gives you a free public link like:
 
@@ -61,6 +82,14 @@ https://your-project-name.vercel.app
 
 ```text
 Admin: admin@school.com / admin123
-Teacher: teacher1@school.com / teacher123
-Student: student1@school.com / student123
+Teacher: teacher@school.com / teacher123
+Student: student@school.com / student123
 ```
+
+## If Login Still Fails
+
+Open the deployed URL in your browser and check:
+
+- `https://your-project-name.vercel.app/api/health` should return `{"status":"OK"}`.
+- If `/api/health` shows the React page or 404, the project was deployed from `frontend` only. Redeploy from the repository root.
+- If `/api/health` works but login fails, check Vercel Function Logs for missing `MONGO_URI`, bad `JWT_SECRET`, or unseeded database.

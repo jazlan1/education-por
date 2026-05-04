@@ -10,24 +10,27 @@ const connectDB = require('./config/db');
 const { errorHandler, notFound } = require('./middleware/errorMiddleware');
 const logger = require('./utils/logger');
 
-// Route imports
-const authRoutes = require('./routes/authRoutes');
-const studentRoutes = require('./routes/studentRoutes');
-const teacherRoutes = require('./routes/teacherRoutes');
-const classRoutes = require('./routes/classRoutes');
-const attendanceRoutes = require('./routes/attendanceRoutes');
-const resultRoutes = require('./routes/resultRoutes');
-const reportRoutes = require('./routes/reportRoutes');
-const notificationRoutes = require('./routes/notificationRoutes');
-const feeRoutes = require('./routes/feeRoutes');
-
 const app = express();
 const isLocalTesting = process.env.NODE_ENV === 'development' || process.env.USE_MOCK_DB === 'true';
 
 app.set('trust proxy', 1);
 
 // Connect to MongoDB/mock DB once when the app is loaded.
-connectDB();
+const dbReady = connectDB();
+
+const lazyRoute = (routePath) => {
+  let router;
+
+  return async (req, res, next) => {
+    try {
+      await dbReady;
+      if (!router) router = require(routePath);
+      return router(req, res, next);
+    } catch (error) {
+      return next(error);
+    }
+  };
+};
 
 // Security middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
@@ -72,15 +75,15 @@ app.get('/api/health', (req, res) => {
 });
 
 // Routes
-app.use('/api/auth', authLimiter, authRoutes);
-app.use('/api/students', studentRoutes);
-app.use('/api/teachers', teacherRoutes);
-app.use('/api/classes', classRoutes);
-app.use('/api/attendance', attendanceRoutes);
-app.use('/api/results', resultRoutes);
-app.use('/api/reports', reportRoutes);
-app.use('/api/notifications', notificationRoutes);
-app.use('/api/fees', feeRoutes);
+app.use('/api/auth', authLimiter, lazyRoute('./routes/authRoutes'));
+app.use('/api/students', lazyRoute('./routes/studentRoutes'));
+app.use('/api/teachers', lazyRoute('./routes/teacherRoutes'));
+app.use('/api/classes', lazyRoute('./routes/classRoutes'));
+app.use('/api/attendance', lazyRoute('./routes/attendanceRoutes'));
+app.use('/api/results', lazyRoute('./routes/resultRoutes'));
+app.use('/api/reports', lazyRoute('./routes/reportRoutes'));
+app.use('/api/notifications', lazyRoute('./routes/notificationRoutes'));
+app.use('/api/fees', lazyRoute('./routes/feeRoutes'));
 
 // Serve frontend build in production
 if (process.env.NODE_ENV === 'production') {
