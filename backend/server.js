@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
-require('dotenv').config();
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
 const connectDB = require('./config/db');
 const { errorHandler, notFound } = require('./middleware/errorMiddleware');
@@ -21,11 +21,13 @@ const reportRoutes = require('./routes/reportRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const feeRoutes = require('./routes/feeRoutes');
 
-// Connect to MongoDB
-connectDB();
-
 const app = express();
 const isLocalTesting = process.env.NODE_ENV === 'development' || process.env.USE_MOCK_DB === 'true';
+
+app.set('trust proxy', 1);
+
+// Connect to MongoDB/mock DB once when the app is loaded.
+connectDB();
 
 // Security middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
@@ -64,6 +66,11 @@ if (process.env.NODE_ENV === 'development') {
 // Static files for uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
 // Routes
 app.use('/api/auth', authLimiter, authRoutes);
 app.use('/api/students', studentRoutes);
@@ -83,23 +90,27 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', timestamp: new Date().toISOString() });
-});
-
-
 // Error handling
 app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
-  console.log(`🚀 Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
-});
+let server;
+
+if (require.main === module) {
+  server = app.listen(PORT, () => {
+    console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+  });
+}
 
 // Handle unhandled promise rejections
 process.on('unhandledRejection', (err) => {
-  console.error(`❌ Unhandled Rejection: ${err.message}`);
-  server.close(() => process.exit(1));
+  console.error(`Unhandled Rejection: ${err.message}`);
+  if (server) {
+    server.close(() => process.exit(1));
+    return;
+  }
+  process.exit(1);
 });
+
+module.exports = app;

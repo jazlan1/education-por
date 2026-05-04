@@ -5,7 +5,9 @@ import { PageHeader, Spinner } from '../../components/shared/UI';
 import toast from 'react-hot-toast';
 
 const CURRENT_YEAR = new Date().getFullYear();
-const UPLOAD_URL = process.env.REACT_APP_UPLOAD_URL || 'http://localhost:5000';
+const UPLOAD_URL =
+  process.env.REACT_APP_UPLOAD_URL ||
+  (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000');
 
 const initialForm = {
   fullName: '', fatherName: '', fatherCNIC: '', dateOfBirth: '', phoneNumber: '',

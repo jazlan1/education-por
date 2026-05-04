@@ -116,7 +116,9 @@ export default function StudentDetail() {
   if (loading) return <div style={{ display: 'flex', justifyContent: 'center', padding: 60 }}><Spinner size={36} /></div>;
   if (!data) return null;
 
-  const UPLOAD_URL = process.env.REACT_APP_UPLOAD_URL || 'http://localhost:5000';
+  const UPLOAD_URL =
+    process.env.REACT_APP_UPLOAD_URL ||
+    (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000');
   const attSummary = data.attendanceSummary;
 
   return (

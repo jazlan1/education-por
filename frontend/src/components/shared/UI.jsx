@@ -69,7 +69,9 @@ export function Pagination({ page, pages, onPageChange }) {
 
 // ─── Avatar ───────────────────────────────────────────────────────────────────
 export function Avatar({ src, name, size = 'md' }) {
-  const UPLOAD_URL = process.env.REACT_APP_UPLOAD_URL || 'http://localhost:5000';
+  const UPLOAD_URL =
+    process.env.REACT_APP_UPLOAD_URL ||
+    (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000');
   const sizes = { sm: 32, md: 36, lg: 56, xl: 96 };
   const px = sizes[size] || 36;
   const fontSize = px * 0.38;

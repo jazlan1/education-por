@@ -4,7 +4,9 @@ import { teacherAPI, getError } from '../../services/api';
 import { PageHeader, Spinner } from '../../components/shared/UI';
 import toast from 'react-hot-toast';
 
-const UPLOAD_URL = process.env.REACT_APP_UPLOAD_URL || 'http://localhost:5000';
+const UPLOAD_URL =
+  process.env.REACT_APP_UPLOAD_URL ||
+  (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:5000');
 const CURRENT_YEAR = new Date().getFullYear();
 const initial = { fullName: '', cnic: '', qualification: '', joiningYear: CURRENT_YEAR, subjects: '', phoneNumber: '', address: '', email: '', gender: 'Male', password: '', isActive: true };
 
