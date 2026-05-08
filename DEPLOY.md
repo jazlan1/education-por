@@ -17,7 +17,7 @@ git push -u origin main
 
 ## 2. Create Free MongoDB Atlas Database
 
-Use MongoDB Atlas free tier and copy your connection string.
+Utilize the MongoDB Atlas free tier to create a new database and obtain its connection string.
 
 Then run the seed command locally against that Atlas database:
 

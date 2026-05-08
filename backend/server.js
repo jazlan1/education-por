@@ -25,13 +25,17 @@ const lazyRoute = (routePath) => {
   return async (req, res, next) => {
     try {
       await dbReady;
-      if (!router) router = require(routePath);
+      if (!router) {
+        // route modules export an Express Router instance
+        router = require(routePath);
+      }
       return router(req, res, next);
     } catch (error) {
       return next(error);
     }
   };
 };
+
 
 // Security middleware
 app.use(helmet({ crossOriginResourcePolicy: { policy: 'cross-origin' } }));
